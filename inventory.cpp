@@ -1,6 +1,7 @@
 #include "Inventory.hpp"
 using namespace std;
-void Inventory::addGuitar(string serialNumber, double price, string builder, string model, string type, string backWood, string topWood){
+void Inventory::addGuitar(string serialNumber, double price, Builder builder, string model, Type type,
+	Wood backWood, Wood topWood){
 	Guitar* guitar = new Guitar(serialNumber, price, builder, model, type, backWood, topWood);
     guitars.push_back(guitar);
 }
@@ -10,7 +11,7 @@ Guitar* Inventory::getGuitar(string serialNumber){
 	Guitar* guitar = NULL;
 	guitar = *iter;
     for(; iter != guitars.end(); iter++){
-        if (guitar->getSerialNumber() == serialNumber){
+        if (toLowerCase(guitar->getSerialNumber()) == serialNumber){
             return guitar;
         }
     }
@@ -22,15 +23,15 @@ Guitar* Inventory::search(Guitar* searchGuitar){
 	Guitar* guitar = NULL;
 	for(; iter != guitars.end(); iter++){
 		guitar = *iter;
-        string builder = searchGuitar->getBuilder();
+        Builder builder = searchGuitar->getBuilder();
 		if (builder == guitar->getBuilder()) {
-			string model = searchGuitar->getModel();
+			string model = toLowerCase(searchGuitar->getModel());
 			if (model == guitar->getModel()) {
-				string type = searchGuitar->getType();
+				Type type = searchGuitar->getType();
 				if (type == guitar->getType()) {
-					string backWood = searchGuitar->getBackWood();
+					Wood backWood = searchGuitar->getBackWood();
 					if (backWood == guitar->getBackWood()) {
-						string topWood = searchGuitar->getTopWood();
+						Wood topWood = searchGuitar->getTopWood();
 						if (topWood == guitar->getTopWood()) {
 							return guitar;
 						}
