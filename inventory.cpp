@@ -18,7 +18,8 @@ Guitar* Inventory::getGuitar(string serialNumber){
 	return NULL;
 };
 
-Guitar* Inventory::search(Guitar* searchGuitar){
+list<Guitar*> Inventory::search(Guitar* searchGuitar){
+	list<Guitar*> matchingGuitars;
 	list<Guitar*>::iterator iter = guitars.begin();
 	Guitar* guitar = NULL;
 	for(; iter != guitars.end(); iter++){
@@ -33,12 +34,12 @@ Guitar* Inventory::search(Guitar* searchGuitar){
 					if (backWood == guitar->getBackWood()) {
 						Wood topWood = searchGuitar->getTopWood();
 						if (topWood == guitar->getTopWood()) {
-							return guitar;
+							matchingGuitars.push_back(guitar);
 						}
 					}
 				}
 			}
 		}
     }
-	return NULL;
+	return matchingGuitars;
 }

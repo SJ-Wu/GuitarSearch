@@ -10,5 +10,5 @@ public:
     void addGuitar(string serialNumber, double price, Builder builder, string model, Type type,
         Wood backWood, Wood topWood);
     Guitar* getGuitar(string serialNumber);
-    Guitar* search(Guitar* searchGuitar);
+    list<Guitar*> search(Guitar* searchGuitar);
 };
