@@ -7,8 +7,7 @@ class Inventory{
 private:
     list<Guitar*> guitars;
 public:
-    void addGuitar(string serialNumber, double price, Builder builder, string model, Type type,
-        Wood backWood, Wood topWood);
+    void addGuitar(string serialNumber, double price, GuitarSpec spec);
     Guitar* getGuitar(string serialNumber);
-    list<Guitar*> search(Guitar* searchGuitar);
+    list<Guitar*> search(GuitarSpec* searchSpec);
 };

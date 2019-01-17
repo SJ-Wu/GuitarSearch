@@ -4,15 +4,25 @@ Guitar::Guitar()
 {
 }
 
-Guitar::Guitar(string serialNumber, double price, Builder builder, string model, Type type, Wood backWood, Wood topWood) {
+Guitar::Guitar(string serialNumber, double price, GuitarSpec spec) {
 	this->serialNumber.append(toLowerCase(serialNumber));
     this->price = price;
-	this->builder = builder;
-    this->model.append(toLowerCase(model));
-	this->type = type;
-    this->backWood = backWood;
-    this->topWood = topWood;
+	this->spec = spec;
 }
+
+GuitarSpec::GuitarSpec()
+{
+}
+
+GuitarSpec::GuitarSpec(Builder builder, string model, Type type, Wood backWood, Wood topWood)
+{
+	this->builder = builder;
+	this->model.append(toLowerCase(model));
+	this->type = type;
+	this->backWood = backWood;
+	this->topWood = topWood;
+}
+
 
 string toLowerCase(string str) {
 	transform(str.begin(), str.end(), str.begin(), ::tolower);
@@ -57,3 +67,4 @@ string Wood2String(Wood wood) {
 		return "Unexpected error";
 	}
 }
+

@@ -22,23 +22,34 @@ enum Wood {
 	WOODMAX
 };
 
-class Guitar{
+class GuitarSpec {
 private:
-    string serialNumber, model;
+	string model;
 	Builder builder;
 	Type type;
 	Wood backWood, topWood;
-    double price;
 public:
-	Guitar();
-    Guitar(string serialNumber, double price, Builder builder, string model, Type type, Wood backWood, Wood topWood);
-	string getSerialNumber() { return serialNumber; }
-	double getPrice() { return price; }
-	Builder getBuilder() { return builder; }
+	GuitarSpec();
+	GuitarSpec(Builder builder, string model, Type type, Wood backWood, Wood topWood);
 	string getModel() { return model; }
+	Builder getBuilder() { return builder; }
 	Type getType() { return type; }
 	Wood getBackWood() { return backWood; }
 	Wood getTopWood() { return topWood; }
+};
+
+
+class Guitar{
+private:
+    string serialNumber;
+    double price;
+	GuitarSpec spec;
+public:
+	Guitar();
+    Guitar(string serialNumber, double price, GuitarSpec spec);
+	string getSerialNumber() { return serialNumber; }
+	double getPrice() { return price; }
+	GuitarSpec* getSpec() {	return &this->spec; } // NOTE:using call by reference to give address, the string data(model) won't be got by call by value 
 };
 
 string toLowerCase(string str);
