@@ -14,13 +14,38 @@ GuitarSpec::GuitarSpec()
 {
 }
 
-GuitarSpec::GuitarSpec(Builder builder, string model, Type type, Wood backWood, Wood topWood)
+GuitarSpec::GuitarSpec(Builder builder, string model, Type type, Wood backWood, Wood topWood, int numStrings)
 {
 	this->builder = builder;
 	this->model.append(toLowerCase(model));
 	this->type = type;
 	this->backWood = backWood;
 	this->topWood = topWood;
+	this->numStrings = numStrings;
+}
+
+bool GuitarSpec::matches(GuitarSpec spec)
+{
+	Builder builder = spec.getBuilder();
+	if (builder == this->getBuilder()) {
+		string model = toLowerCase(spec.getModel());
+		if (model == this->getModel()) {
+			Type type = spec.getType();
+			if (type == this->getType()) {
+				Wood backWood = spec.getBackWood();
+				if (backWood == this->getBackWood()) {
+					Wood topWood = spec.getTopWood();
+					if (topWood == this->getTopWood()) {
+						int numStrings = spec.getNumStrings();
+						if (numStrings == this->getNumStrings()){
+							return true;
+						}
+					}
+				}
+			}
+		}
+	}
+	return false;
 }
 
 

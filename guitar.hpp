@@ -28,14 +28,17 @@ private:
 	Builder builder;
 	Type type;
 	Wood backWood, topWood;
+	int numStrings;
 public:
 	GuitarSpec();
-	GuitarSpec(Builder builder, string model, Type type, Wood backWood, Wood topWood);
+	GuitarSpec(Builder builder, string model, Type type, Wood backWood, Wood topWood, int numStrings);
 	string getModel() { return model; }
 	Builder getBuilder() { return builder; }
 	Type getType() { return type; }
 	Wood getBackWood() { return backWood; }
 	Wood getTopWood() { return topWood; }
+	int getNumStrings() { return numStrings; }
+	bool matches(GuitarSpec spec);
 };
 
 

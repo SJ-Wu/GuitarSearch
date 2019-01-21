@@ -9,15 +9,15 @@ private:
 };
 
 void FindGuitarTester::initializeInventory(Inventory* inventory){
-	inventory->addGuitar("V95693", 1499.95, GuitarSpec(FENDER, "Stratocastor", ELECTRIC, ALDER, ALDER));
-	inventory->addGuitar("V94600", 1399.00, GuitarSpec(FENDER, "Stratocastor", ELECTRIC, ALDER, ALDER));
+	inventory->addGuitar("V95693", 1499.95, GuitarSpec(FENDER, "Stratocastor", ELECTRIC, ALDER, ALDER, 6));
+	inventory->addGuitar("V94600", 1399.00, GuitarSpec(FENDER, "Stratocastor", ELECTRIC, ALDER, ALDER, 6));
 }
 
 FindGuitarTester::FindGuitarTester(){
     Inventory *inventory = new Inventory();
     initializeInventory(inventory);
 
-    GuitarSpec whatErinLikes(FENDER, "Stratocastor", ELECTRIC, ALDER, ALDER);
+    GuitarSpec whatErinLikes(FENDER, "Stratocastor", ELECTRIC, ALDER, ALDER, 6);
     list<Guitar*> matchingGuitars = inventory->search(&whatErinLikes);
 	if (matchingGuitars.empty()) {
 		cout << "Sorry, Erin, we have nothing for you." << endl;
@@ -31,7 +31,7 @@ FindGuitarTester::FindGuitarTester(){
 			spec = guitar->getSpec();
 			cout << "Erin, you might like this " << Builder2String(spec->getBuilder()) << " " << spec->getModel() << " " << Type2String(spec->getType()) << " guitar:\n";
 			cout << Wood2String(spec->getBackWood()) << " back and sides,\n";
-			cout << Wood2String(spec->getTopWood()) << " top.\nYou can have it for only $";
+			cout << Wood2String(spec->getTopWood()) << " top.\nNumber of strings " << spec->getNumStrings() << " \nYou can have it for only $";
 			cout << guitar->getPrice() << "!" << endl;
 		}
 	}

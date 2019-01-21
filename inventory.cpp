@@ -25,21 +25,8 @@ list<Guitar*> Inventory::search(GuitarSpec* searchSpec){
 	for(; iter != guitars.end(); iter++){
 		guitar = *iter;
 		spec = guitar->getSpec();
-        Builder builder = searchSpec->getBuilder();
-		if (builder == spec->getBuilder()) {
-			string model = toLowerCase(searchSpec->getModel());
-			if (model == spec->getModel()) {
-				Type type = searchSpec->getType();
-				if (type == spec->getType()) {
-					Wood backWood = searchSpec->getBackWood();
-					if (backWood == spec->getBackWood()) {
-						Wood topWood = searchSpec->getTopWood();
-						if (topWood == spec->getTopWood()) {
-							matchingGuitars.push_back(guitar);
-						}
-					}
-				}
-			}
+		if (searchSpec->matches(*spec) == true) {
+			matchingGuitars.push_back(guitar);
 		}
     }
 	return matchingGuitars;
